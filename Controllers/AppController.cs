@@ -57,7 +57,7 @@ namespace emptProj.Controllers
                 .OrderBy(p => p.Category)
                 .ToList();
             
-            return View();
+            return View(results);
         }
     }
 }

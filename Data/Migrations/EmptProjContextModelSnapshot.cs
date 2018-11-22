@@ -19,7 +19,7 @@ namespace emptProj.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DutchTreat.Data.Entities.Order", b =>
+            modelBuilder.Entity("emptProj.Data.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace emptProj.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DutchTreat.Data.Entities.OrderItem", b =>
+            modelBuilder.Entity("emptProj.Data.Entities.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace emptProj.Migrations
                     b.ToTable("OrderItem");
                 });
 
-            modelBuilder.Entity("DutchTreat.Data.Entities.Product", b =>
+            modelBuilder.Entity("emptProj.Data.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,13 +90,13 @@ namespace emptProj.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DutchTreat.Data.Entities.OrderItem", b =>
+            modelBuilder.Entity("emptProj.Data.Entities.OrderItem", b =>
                 {
-                    b.HasOne("DutchTreat.Data.Entities.Order", "Order")
+                    b.HasOne("emptProj.Data.Entities.Order", "Order")
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("DutchTreat.Data.Entities.Product", "Product")
+                    b.HasOne("emptProj.Data.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
                 });

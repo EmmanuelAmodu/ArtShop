@@ -10,8 +10,8 @@ using emptProj.Data;
 namespace emptProj.Migrations
 {
     [DbContext(typeof(EmptProjContext))]
-    [Migration("20181122165201_InitialDb")]
-    partial class InitialDb
+    [Migration("20181122200543_RenamedDb")]
+    partial class RenamedDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
