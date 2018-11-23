@@ -13,15 +13,16 @@ namespace emptProj.Controllers
     public class AppController : Controller
     {
         private readonly IMailService _mailService;
-        private readonly EmptProjContext _context;
-        public AppController(IMailService mailService, EmptProjContext context)
+        private readonly IEmptProjRepository _repository;
+        public AppController(IMailService mailService, IEmptProjRepository repository)
         {
-            this._context = context;
-            this._mailService = mailService;
+            _mailService = mailService;
+            _repository = repository;
         }
         public IActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            var results = _repository.GetAllProducts();
             return View();
         }
 
@@ -37,7 +38,7 @@ namespace emptProj.Controllers
             if (ModelState.IsValid)
             {
                 // Send email
-                this._mailService.SendMessage("shawn@wildermuth.com", model.Subject, $"From: {model.Name} - {model.Email}, Message: {model.Message}");
+                _mailService.SendMessage("shawn@wildermuth.com", model.Subject, $"From: {model.Name} - {model.Email}, Message: {model.Message}");
                 ViewBag.UserMessage = "Mail Sent";
                 ModelState.Clear();
             }
@@ -53,9 +54,7 @@ namespace emptProj.Controllers
 
         public IActionResult Shop()
         {
-            var results = _context.Products
-                .OrderBy(p => p.Category)
-                .ToList();
+            var results = _repository.GetAllProducts();
             
             return View(results);
         }

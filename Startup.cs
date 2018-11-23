@@ -28,7 +28,10 @@ namespace emptProj
             services.AddDbContext<EmptProjContext>(cfg => 
                 cfg.UseSqlServer(_config.GetConnectionString("emptProjConnectionString")));
 
+            services.AddTransient<EmptProjSeeder>();
             services.AddTransient<IMailService, NullMailService>();
+
+            services.AddScoped<IEmptProjRepository, EmptProjRepository>();
             services.AddMvc();
         }
 
